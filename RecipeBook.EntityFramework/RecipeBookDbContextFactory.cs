@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace RecipeBook.EntityFramework
 {
-    public class DesignTimeContextOptionsFactory : IDesignTimeDbContextFactory<RecipeBookDbContext>
+    public class RecipeBookDbContextFactory : IDesignTimeDbContextFactory<RecipeBookDbContext>
     {
         public RecipeBookDbContext CreateDbContext(string[] args)
         {

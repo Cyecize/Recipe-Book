@@ -158,7 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DesignTimeContextOptionsFactory.cs" />
+    <Compile Include="RecipeBookDbContextFactory.cs" />
     <Compile Include="Migrations\20200704141015_initial.cs" />
     <Compile Include="Migrations\20200704141015_initial.Designer.cs">
       <DependentUpon>20200704141015_initial.cs</DependentUpon>
