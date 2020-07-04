@@ -5,7 +5,7 @@ namespace RecipeBook.EntityFramework
 {
     public class RecipeBookDbContextFactory : IDesignTimeDbContextFactory<RecipeBookDbContext>
     {
-        public RecipeBookDbContext CreateDbContext(string[] args)
+        public RecipeBookDbContext CreateDbContext(string[] args = null)
         {
             //TODO: import the connection string!
             //optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["recipe_book_db"].ConnectionString);

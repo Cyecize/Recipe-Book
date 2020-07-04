@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace RecipeBook.Domain.Services
 {
-    public interface IDataService<TE, TId>
+    public interface IDataService<TEntity, TId> where TEntity : class
     {
-        Task<List<TE>> GetAll();
+        Task<List<TEntity>> GetAll();
 
-        Task<TE> Find(TId id);
+        Task<TEntity> Find(TId id);
 
-        Task<TE> Create(TE entity);
+        Task<TEntity> Create(TEntity entity);
 
-        Task<TE> Update(TE entity);
+        Task<TEntity> Update(TEntity entity);
 
-        Task<bool> Delete(TE entity);
+        Task<bool> Delete(TEntity entity);
     }
 }
