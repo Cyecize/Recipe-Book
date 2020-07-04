@@ -4,7 +4,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace RecipeBook.EntityFramework.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialStructure : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,9 @@ namespace RecipeBook.EntityFramework.Migrations
                 {
                     id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    username = table.Column<string>(maxLength: 50, nullable: false)
+                    username = table.Column<string>(maxLength: 50, nullable: false),
+                    password = table.Column<string>(maxLength: 255, nullable: false),
+                    date_registered = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

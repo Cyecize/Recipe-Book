@@ -9,8 +9,8 @@ using RecipeBook.EntityFramework;
 namespace RecipeBook.EntityFramework.Migrations
 {
     [DbContext(typeof(RecipeBookDbContext))]
-    [Migration("20200704141613_add-fields-to-user")]
-    partial class addfieldstouser
+    [Migration("20200704220029_InitialStructure")]
+    partial class InitialStructure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
