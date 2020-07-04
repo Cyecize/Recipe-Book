@@ -11,22 +11,13 @@ namespace RecipeBook.EntityFramework
 
         public DbSet<Ingredient> Ingredients { get; set; }
 
+        public RecipeBookDbContext(DbContextOptions options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasIndex(u => u.Username).IsUnique();
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //TODO: import the connection string!
-            //optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["recipe_book_db"].ConnectionString);
-            optionsBuilder.UseMySQL(
-                "server=localhost;database=recipe_book_db;user=root;password=toor"
-            );
-
-            base.OnConfiguring(optionsBuilder);
         }
     }
 }
