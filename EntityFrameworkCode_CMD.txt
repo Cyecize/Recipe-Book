@@ -1,0 +1,2 @@
+add-migration ${nameOfMigration} -v -s RecipeBook.EntityFramework
+update-database -v -s RecipeBook.EntityFramework
