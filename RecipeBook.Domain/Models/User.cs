@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RecipeBook.Domain.Constants;
@@ -16,5 +17,13 @@ namespace RecipeBook.Domain.Models
         [Required]
         public string Username { get; set; }
 
+        [Column("password")]
+        [StringLength(Lengths.MaxVarchar)]
+        [Required]
+        public string Password { get; set; }
+
+        [Column("date_registered")]
+        [Required]
+        public DateTime DateRegistered { get; set; }
     }
 }

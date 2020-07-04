@@ -162,6 +162,10 @@
     <Compile Include="Migrations\20200704141015_initial.Designer.cs">
       <DependentUpon>20200704141015_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200704141613_add-fields-to-user.cs" />
+    <Compile Include="Migrations\20200704141613_add-fields-to-user.designer.cs">
+      <DependentUpon>20200704141613_add-fields-to-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RecipeBookDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeBookDbContext.cs" />
