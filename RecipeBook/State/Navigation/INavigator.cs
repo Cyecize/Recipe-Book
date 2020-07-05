@@ -16,5 +16,7 @@ namespace RecipeBook.State.Navigation
         BaseViewModel CurrentViewModel { get; set; }
 
         ICommand UpdateCurrentViewModelCommand { get; }
+
+        void RedirectTo(ViewType view);
     }
 }

@@ -8,7 +8,6 @@ using RecipeBook.EntityFramework.Services;
 using RecipeBook.State.Authentication;
 using RecipeBook.State.Navigation;
 using RecipeBook.ViewModels;
-using RecipeBook.ViewModels.Factories;
 
 namespace RecipeBook
 {
@@ -39,11 +38,10 @@ namespace RecipeBook
             
 
             //View model factories
-            services.AddSingleton<IViewModelAbstractFactory, ViewModelAbstractFactory>();
-            services.AddSingleton<IViewModelFactory<AddRecipeViewModel>, AddRecipeViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<SearchViewModel>, SearchViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<MyRecipesViewModel>, MyRecipesViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<LoginViewModel>, LoginViewModelFactory>();
+            services.AddTransient<AddRecipeViewModel, AddRecipeViewModel>();
+            services.AddTransient<SearchViewModel, SearchViewModel>();
+            services.AddTransient<MyRecipesViewModel, MyRecipesViewModel>();
+            services.AddTransient<LoginViewModel, LoginViewModel>();
 
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<MainViewModel>();

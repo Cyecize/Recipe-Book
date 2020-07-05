@@ -13,7 +13,7 @@ namespace RecipeBook.ViewModels
         {
             this.Navigator = navigator;
             this.Authenticator = authenticator;
-            this.Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Login);
+            this.Navigator.RedirectTo(ViewType.Login);
         }
     }
 }

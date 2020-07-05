@@ -1,16 +1,17 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Microsoft.Extensions.DependencyInjection;
 using RecipeBook.Commands;
 using RecipeBook.Models;
 using RecipeBook.ViewModels;
-using RecipeBook.ViewModels.Factories;
 
 namespace RecipeBook.State.Navigation
 {
     public class Navigator : ObservableObject, INavigator
     {
-        private BaseViewModel _currentViewModel;
+        private readonly IServiceProvider _serviceProvider;
 
-        private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
+        private BaseViewModel _currentViewModel;
 
         public BaseViewModel CurrentViewModel
         {
@@ -22,11 +23,28 @@ namespace RecipeBook.State.Navigation
             }
         }
 
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this, this._viewModelAbstractFactory);
-
-        public Navigator(IViewModelAbstractFactory viewModelAbstractFactory)
+        public Navigator(IServiceProvider serviceProvider)
         {
-            _viewModelAbstractFactory = viewModelAbstractFactory;
+            this._serviceProvider = serviceProvider;
+        }
+
+        public ICommand UpdateCurrentViewModelCommand => new InlineCommand(payload =>
+        {
+            if (!(payload is ViewType viewType)) return;
+
+            this.CurrentViewModel = viewType switch
+            {
+                ViewType.MyRecipes => (this._serviceProvider.GetRequiredService<MyRecipesViewModel>() as BaseViewModel),
+                ViewType.Search => this._serviceProvider.GetRequiredService<SearchViewModel>(),
+                ViewType.AddRecipe => this._serviceProvider.GetRequiredService<AddRecipeViewModel>(),
+                ViewType.Login => this._serviceProvider.GetRequiredService<LoginViewModel>(),
+                _ => throw new ArgumentException($"View {viewType} not supported!")
+            };
+        });
+
+        public void RedirectTo(ViewType view)
+        {
+            this.UpdateCurrentViewModelCommand.Execute(view);
         }
     }
 }
