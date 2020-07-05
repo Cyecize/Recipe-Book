@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RecipeBook.Domain.Services
@@ -8,6 +9,10 @@ namespace RecipeBook.Domain.Services
         Task<List<TEntity>> GetAll();
 
         Task<TEntity> Find(TId id);
+
+        Task<TEntity> FindOneBy(Func<TEntity, bool> predicate);
+
+        Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate);
 
         Task<TEntity> Create(TEntity entity);
 
