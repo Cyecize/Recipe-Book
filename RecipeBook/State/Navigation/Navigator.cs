@@ -2,12 +2,15 @@
 using RecipeBook.Commands;
 using RecipeBook.Models;
 using RecipeBook.ViewModels;
+using RecipeBook.ViewModels.Factories;
 
 namespace RecipeBook.State.Navigation
 {
     public class Navigator : ObservableObject, INavigator
     {
         private BaseViewModel _currentViewModel;
+
+        private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
 
         public BaseViewModel CurrentViewModel
         {
@@ -19,6 +22,11 @@ namespace RecipeBook.State.Navigation
             }
         }
 
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
+        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this, this._viewModelAbstractFactory);
+
+        public Navigator(IViewModelAbstractFactory viewModelAbstractFactory)
+        {
+            _viewModelAbstractFactory = viewModelAbstractFactory;
+        }
     }
 }

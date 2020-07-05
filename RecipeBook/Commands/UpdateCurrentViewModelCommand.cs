@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using RecipeBook.State.Navigation;
-using RecipeBook.ViewModels;
+using RecipeBook.ViewModels.Factories;
 
 namespace RecipeBook.Commands
 {
@@ -14,11 +14,14 @@ namespace RecipeBook.Commands
 
         private readonly INavigator _navigator;
 
+        private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
+
         public event EventHandler CanExecuteChanged;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator)
+        public UpdateCurrentViewModelCommand(INavigator navigator, IViewModelAbstractFactory viewModelAbstractFactory)
         {
             this._navigator = navigator;
+            this._viewModelAbstractFactory = viewModelAbstractFactory;
         }
 
         public bool CanExecute(object parameter)
@@ -29,14 +32,7 @@ namespace RecipeBook.Commands
         public void Execute(object parameter)
         {
             if (!(parameter is ViewType viewType)) return;
-
-            this._navigator.CurrentViewModel = viewType switch
-            {
-                ViewType.AddRecipe => new AddRecipeViewModel(),
-                ViewType.MyRecipes => new MyRecipesViewModel(),
-                ViewType.Search => new SearchViewModel(),
-                _ => this._navigator.CurrentViewModel
-            };
+            this._navigator.CurrentViewModel = this._viewModelAbstractFactory.CreateViewModel(viewType);
         }
     }
 }
