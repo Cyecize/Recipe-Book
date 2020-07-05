@@ -7,14 +7,15 @@
              xmlns:nav="clr-namespace:RecipeBook.State.Navigation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{StaticResource BrushPrimary1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Recipe Book" Grid.Row="0" Background="{StaticResource BrushPrimary1}"></TextBlock>
-        <Grid Grid.Row="1" Background="{StaticResource BrushPrimary2}">
+        <TextBlock Text="Recipe Book" Grid.Row="0" Padding="6" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -24,9 +25,9 @@
 
             <!-- This file is aware of the UpdateCurrentViewModelCommand property as it is present in the INavigator -->
             <!-- This file is aware of the INavigator as it is bound in MainWindow.xaml -->
-            <RadioButton Grid.Column="0" Content="My Recipes" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.MyRecipes}"></RadioButton>
-            <RadioButton Grid.Column="1" Content="Search" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Search}"></RadioButton>
-            <RadioButton Grid.Column="2" Content="Add New" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.AddRecipe}"></RadioButton>
+            <RadioButton Grid.Column="0" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="MY RECIPES" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.MyRecipes}" ></RadioButton>
+            <RadioButton Grid.Column="1" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="SEARCH" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Search}"></RadioButton>
+            <RadioButton Grid.Column="2" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="ADD NEW" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.AddRecipe}"></RadioButton>
         </Grid>
     </Grid>
 </UserControl>

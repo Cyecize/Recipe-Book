@@ -22,7 +22,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Add custom styles or external ones -->
                 <ResourceDictionary Source="Styles/Common.xaml"></ResourceDictionary>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Green" SecondaryColor="Amber" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
