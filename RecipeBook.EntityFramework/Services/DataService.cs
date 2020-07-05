@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RecipeBook.Domain.Services;
@@ -28,10 +29,10 @@ namespace RecipeBook.EntityFramework.Services
             return await context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<TEntity> FindOneBy(Func<TEntity, bool> predicate)
+        public async Task<TEntity> FindOneBy(Expression<Func<TEntity, bool>> predicate)
         {
             await using RecipeBookDbContext context = this._factory.CreateDbContext();
-            return context.Set<TEntity>().Where(predicate).FirstOrDefault();
+            return await context.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
         public async Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate)

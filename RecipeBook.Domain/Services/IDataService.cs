@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RecipeBook.Domain.Services
@@ -10,7 +11,7 @@ namespace RecipeBook.Domain.Services
 
         Task<TEntity> Find(TId id);
 
-        Task<TEntity> FindOneBy(Func<TEntity, bool> predicate);
+        Task<TEntity> FindOneBy(Expression<Func<TEntity, bool>> predicate);
 
         Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate);
 
