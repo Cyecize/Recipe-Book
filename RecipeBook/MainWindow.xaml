@@ -15,11 +15,23 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <controls:NavBar Grid.Row="0" DataContext="{Binding Navigator}"/>
+        <Grid Grid.Row="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Authenticator.IsLoggedIn}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <controls:NavBar DataContext="{Binding Navigator}"/>
+        </Grid>
 
-        <!-- Bound to CurrentViewModel, on change the new view model name will pre shown.  -->
+        <!-- Bound to CurrentViewModel, on change the new view model name will be shown.  -->
         <!-- In App.xaml there is mapping so instead of name, the corresponding view will be shown.  -->
         <!-- Navigator property is coming from MainViewModel and this file is aware of MainViewModel because it is set in App.xaml.cs -->
+        <!-- This is how when you create a new view, you automatically get associated with it's view model.-->
         <ContentControl Grid.Row="1" Content="{Binding Navigator.CurrentViewModel}"/>
     </Grid>
 </Window>

@@ -7,7 +7,8 @@ namespace RecipeBook.State.Navigation
     {
         MyRecipes,
         Search,
-        AddRecipe
+        AddRecipe,
+        Login
     }
 
     public interface INavigator

@@ -17,6 +17,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:AddRecipeViewModel}">
                 <views:AddRecipeView/>
+            </DataTemplate>    
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>

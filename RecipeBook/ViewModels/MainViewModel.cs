@@ -1,4 +1,5 @@
-﻿using RecipeBook.State.Navigation;
+﻿using RecipeBook.State.Authentication;
+using RecipeBook.State.Navigation;
 
 namespace RecipeBook.ViewModels
 {
@@ -6,9 +7,13 @@ namespace RecipeBook.ViewModels
     {
         public INavigator Navigator { get; set; }
 
-        public MainViewModel(INavigator navigator)
+        public IAuthenticator Authenticator { get; set; }
+
+        public MainViewModel(INavigator navigator, IAuthenticator authenticator)
         {
             this.Navigator = navigator;
+            this.Authenticator = authenticator;
+            this.Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Login);
         }
     }
 }

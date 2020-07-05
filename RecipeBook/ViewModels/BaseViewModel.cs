@@ -1,6 +1,8 @@
-﻿namespace RecipeBook.ViewModels
+﻿using RecipeBook.Models;
+
+namespace RecipeBook.ViewModels
 {
-    public abstract class BaseViewModel
+    public abstract class BaseViewModel : ObservableObject
     {
     }
 }
