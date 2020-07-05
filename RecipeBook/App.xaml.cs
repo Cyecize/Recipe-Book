@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using RecipeBook.ViewModels;
 
 namespace RecipeBook
 {
@@ -10,6 +11,8 @@ namespace RecipeBook
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
+            mainWindow.DataContext = new MainViewModel();
+
             mainWindow.Show();
 
             base.OnStartup(e);

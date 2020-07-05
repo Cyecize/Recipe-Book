@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeBook"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:RecipeBook.Controls"
         mc:Ignorable="d"
         Title="Recipe Book" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <materialDesign:Card Padding="32" Margin="16">
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">Wu Wuut</TextBlock>
-            </materialDesign:Card>
-        </StackPanel>
+        <!-- Row 0 - navbar, Row 1 - content  -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <controls:NavBar Grid.Row="0" DataContext="{Binding Navigator}"/>
+
+        <!-- Bound to CurrentViewModel, on change the new view model name will pre shown.  -->
+        <!-- In App.xaml there is mapping so instead of name, the corresponding view will be shown.  -->
+        <!-- Navigator property is coming from MainViewModel and this file is aware of MainViewModel because it is set in App.xaml.cs -->
+        <ContentControl Grid.Row="1" Content="{Binding Navigator.CurrentViewModel}"/>
     </Grid>
 </Window>

@@ -2,10 +2,26 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RecipeBook"
+             xmlns:viewmodels="clr-namespace:RecipeBook.ViewModels"
+             xmlns:views="clr-namespace:RecipeBook.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Here the mapping for viewModel to view is done. -->
+            <!-- if this is not set, a text will be shown on the main window -->
+            <DataTemplate DataType="{x:Type viewmodels:MyRecipesViewModel}">
+                <views:MyRecipesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SearchViewModel}">
+                <views:SearchView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AddRecipeViewModel}">
+                <views:AddRecipeView/>
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
+                <!-- Add custom styles or external ones -->
+                <ResourceDictionary Source="Styles/Common.xaml"></ResourceDictionary>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
