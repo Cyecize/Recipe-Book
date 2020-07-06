@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using RecipeBook.Domain.Models;
 
@@ -36,6 +37,18 @@ namespace RecipeBook.Domain.Services
             await this._dataService.Create(recipe);
 
             return recipe;
+        }
+
+        public async Task<List<Recipe>> FindByUser(User owner)
+        {
+            return await this._dataService.FindBy(
+                recipe => recipe.CreatedById == owner.Id,
+                new Expression<Func<Recipe, object>>[]
+                {
+                    recipe => recipe.CreatedBy,
+                    recipe => recipe.Ingredients
+                }
+                );
         }
     }
 }
