@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RecipeBook.Controls.RecipesGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RecipeBook.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <Grid>
+        <DataGrid
+            ItemsSource="{Binding}"
+            IsReadOnly="True"
+            CanUserAddRows="False"
+            AutoGenerateColumns="False"
+            HeadersVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    MaxWidth="400"
+                    Header="Title"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="Title">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Added On"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="DateAdded">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn> 
+                <DataGridTextColumn
+                    Header="Added By"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="CreatedBy.Username">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn> 
+                <DataGridTextColumn
+                    Header="# Of Ingredients"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="Ingredients.Count">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
