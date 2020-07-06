@@ -31,8 +31,10 @@ namespace RecipeBook
 
             services.AddSingleton<RecipeBookDbContextFactory>();
             services.AddSingleton<IDataService<User, long>, DataService<User, long>>();
+            services.AddSingleton<IDataService<Recipe, long>, DataService<Recipe, long>>();
 
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IRecipeService, RecipeService>();
             services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<IAuthenticator, Authenticator>();
             
