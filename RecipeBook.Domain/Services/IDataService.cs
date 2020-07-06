@@ -15,6 +15,8 @@ namespace RecipeBook.Domain.Services
 
         Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate);
 
+        Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate, Expression<Func<TEntity, object>>[] includes);
+
         Task<TEntity> Create(TEntity entity);
 
         Task<TEntity> Update(TEntity entity);
