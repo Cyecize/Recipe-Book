@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using RecipeBook.Commands;
-using RecipeBook.Domain.Models;
 using RecipeBook.State.Authentication;
 using RecipeBook.State.Navigation;
 

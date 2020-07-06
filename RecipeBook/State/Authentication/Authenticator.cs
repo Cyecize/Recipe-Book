@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using RecipeBook.Domain.Models;
 using RecipeBook.Domain.Services;
 using RecipeBook.Models;
-using RecipeBook.State.Navigation;
 
 namespace RecipeBook.State.Authentication
 {
