@@ -39,19 +39,22 @@ namespace RecipeBook.State.Authentication
             return registeredUser;
         }
 
-        public bool Login(string username, string password)
+        public string Login(string username, string password)
         {
+            string message = string.Empty;
+
             try
             {
                 User user = this._authService.Login(username, password).Result;
                 this.CurrentUser = user;
-                return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 this.CurrentUser = null;
-                return false;
+                message = ex.Message; ;
             }
+
+            return message;
         }
 
         public void Logout()

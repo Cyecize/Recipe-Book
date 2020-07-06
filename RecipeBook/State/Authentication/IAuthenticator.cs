@@ -11,7 +11,7 @@ namespace RecipeBook.State.Authentication
 
         Task<User> Register(string username, string password, string passwordConfirm);
 
-        bool Login(string username, string password);
+        string Login(string username, string password);
 
         void Logout();
     }

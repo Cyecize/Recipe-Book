@@ -15,6 +15,8 @@ namespace RecipeBook.ViewModels
 
         private string _password;
 
+        private string _errorMessage;
+
         public LoginViewModel(IAuthenticator authenticator, INavigator navigator)
         {
             _authenticator = authenticator;
@@ -41,11 +43,21 @@ namespace RecipeBook.ViewModels
             }
         }
 
+        public string ErrorMessage
+        {
+            get => this._errorMessage;
+            set
+            {
+                this._errorMessage = value;
+                base.OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ICommand LoginCommand => new InlineCommand(payload =>
         {
-            bool isLoginSuccessful = this._authenticator.Login(this.Username, this.Password);
+            this.ErrorMessage = this._authenticator.Login(this.Username, this.Password);
 
-            if (isLoginSuccessful) this._navigator.RedirectTo(ViewType.MyRecipes);
+            if (this._authenticator.IsLoggedIn) this._navigator.RedirectTo(ViewType.MyRecipes);
             else this.Password = "";
         });
     }

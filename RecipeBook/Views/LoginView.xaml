@@ -7,38 +7,52 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Margin="0 10 0 0"
-            Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-            Width="300"
-            VerticalAlignment="Top"
-            AcceptsReturn="False"
-            TextWrapping="NoWrap"
-            MaxLength="50"
-            materialDesign:HintAssist.Hint="Username"
-            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
-
-        <TextBox Grid.Row="1" Margin="0 10 0 0"
-            Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-            Width="300"
-            VerticalAlignment="Top"
-            MaxLength="255"
-            Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-            materialDesign:HintAssist.Hint="Password"/>
-
-        <Button Grid.Row="2" Margin="0 10 0 0"
-            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-            Width="100"
+        <TextBlock
             HorizontalAlignment="Center"
-            Command="{Binding LoginCommand}"
-            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-            LOGIN
-        </Button>
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}">
+            Recipe Book Login
+        </TextBlock>
+
+        <StackPanel Grid.Row="1" Width="300">
+            <TextBox Margin="0 10 0 0"
+                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     VerticalAlignment="Top"
+                     AcceptsReturn="False"
+                     TextWrapping="NoWrap"
+                     MaxLength="50"
+                     materialDesign:HintAssist.Hint="Username"
+                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBox Margin="0 10 0 0"
+                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     VerticalAlignment="Top"
+                     MaxLength="255"
+                     Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:HintAssist.Hint="Password"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="2"
+                   HorizontalAlignment="Center"
+            Style="{StaticResource MaterialDesignBody2TextBlock}" Text="{Binding ErrorMessage}"/>
+
+        <StackPanel Grid.Row="3">
+            <Button Margin="0 10 0 0"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    Command="{Binding LoginCommand}"
+                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                LOGIN
+            </Button>
+        </StackPanel>
+        
     </Grid>
 </UserControl>
