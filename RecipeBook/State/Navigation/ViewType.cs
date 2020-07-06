@@ -9,6 +9,7 @@ namespace RecipeBook.State.Navigation
         public static readonly ViewType Search = new ViewType(typeof(SearchViewModel));
         public static readonly ViewType AddRecipe = new ViewType(typeof(AddRecipeViewModel));
         public static readonly ViewType Login = new ViewType(typeof(LoginViewModel));
+        public static readonly ViewType Register = new ViewType(typeof(RegisterViewModel));
 
         public Type ViewModelType { get; }
 

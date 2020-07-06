@@ -34,6 +34,8 @@ namespace RecipeBook.State.Authentication
         public async Task<User> Register(string username, string password, string passwordConfirm)
         {
             if (password != passwordConfirm) throw new ArgumentException("Passwords do not match!");
+            if (password == null || password.Length < 6) throw new ArgumentException("Think of password with length greater than 6");
+            if (username == null || username.Length < 3) throw new ArgumentException("Think of username with length greater than 3");
 
             User registeredUser = await this._authService.Register(username, password);
 

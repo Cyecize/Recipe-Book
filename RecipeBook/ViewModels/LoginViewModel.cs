@@ -60,5 +60,7 @@ namespace RecipeBook.ViewModels
             if (this._authenticator.IsLoggedIn) this._navigator.RedirectTo(ViewType.MyRecipes);
             else this.Password = "";
         });
+
+        public ICommand RedirectToRegisterCommand => new InlineCommand(payload => this._navigator.RedirectTo(ViewType.Register));
     }
 }

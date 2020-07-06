@@ -38,10 +38,11 @@ namespace RecipeBook
             
 
             //View model factories
-            services.AddTransient<AddRecipeViewModel, AddRecipeViewModel>();
-            services.AddTransient<SearchViewModel, SearchViewModel>();
-            services.AddTransient<MyRecipesViewModel, MyRecipesViewModel>();
-            services.AddTransient<LoginViewModel, LoginViewModel>();
+            services.AddTransient<AddRecipeViewModel>();
+            services.AddTransient<SearchViewModel>();
+            services.AddTransient<MyRecipesViewModel>();
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<RegisterViewModel>();
 
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<MainViewModel>();
