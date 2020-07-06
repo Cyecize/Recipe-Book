@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using RecipeBook.Domain.Dtos;
 using RecipeBook.Domain.Models;
 
 namespace RecipeBook.Domain.Services
@@ -49,6 +50,36 @@ namespace RecipeBook.Domain.Services
                     recipe => recipe.Ingredients
                 }
                 );
+        }
+
+        public async Task<List<Recipe>> Search(RecipeSearchQuery query)
+        {
+            return await this._dataService.FindBy(
+                recipe =>
+                {
+                    bool isMatch = true;
+                    if (query.OwnerName != null)
+                        isMatch = recipe.CreatedBy.Username.ToLower().Contains(query.OwnerName.ToLower());
+
+                    if (query.Global != null)
+                    {
+                        string q = query.Global.ToLower();
+                        bool globalMatch = recipe.Title.ToLower().Contains(q)
+                                           || recipe.Content.ToLower().Contains(q)
+                                           || recipe.Ingredients.Any(
+                                               ingredient => ingredient.Name.ToLower().Contains(q));
+
+                        isMatch = isMatch && globalMatch;
+                    }
+
+                    return isMatch;
+                },
+                new Expression<Func<Recipe, object>>[]
+                {
+                    recipe => recipe.CreatedBy,
+                    recipe => recipe.Ingredients
+                }
+            );
         }
     }
 }
