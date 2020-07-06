@@ -25,7 +25,8 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <controls:NavBar DataContext="{Binding Navigator}"/>
+            <!-- Not specifying data context for navbar, therefore it uses the same context as this file - MainViewModel. -->
+            <controls:NavBar/>
         </Grid>
 
         <!-- Bound to CurrentViewModel, on change the new view model name will be shown.  -->

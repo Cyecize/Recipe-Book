@@ -21,13 +21,17 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!-- This file is aware of the UpdateCurrentViewModelCommand property as it is present in the INavigator -->
             <!-- This file is aware of the INavigator as it is bound in MainWindow.xaml -->
-            <RadioButton Grid.Column="0" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="MY RECIPES" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.MyRecipes}" ></RadioButton>
-            <RadioButton Grid.Column="1" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="SEARCH" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Search}"></RadioButton>
-            <RadioButton Grid.Column="2" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="ADD NEW" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.AddRecipe}"></RadioButton>
+            <RadioButton Grid.Column="0" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="MY RECIPES" Command="{Binding Navigator.UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.MyRecipes}" ></RadioButton>
+            <RadioButton Grid.Column="1" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="SEARCH" Command="{Binding Navigator.UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Search}"></RadioButton>
+            <RadioButton Grid.Column="2" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="ADD NEW" Command="{Binding Navigator.UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.AddRecipe}"></RadioButton>
+            <RadioButton Grid.Column="4" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="{Binding Authenticator.CurrentUser.Username}"></RadioButton>
+            <RadioButton Grid.Column="5" Style="{StaticResource MaterialDesignFlatLightBgButton}" Content="LOGOUT" Command="{Binding LogoutCommand}"></RadioButton>
         </Grid>
     </Grid>
 </UserControl>

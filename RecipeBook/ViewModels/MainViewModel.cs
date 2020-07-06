@@ -1,4 +1,6 @@
-﻿using RecipeBook.State.Authentication;
+﻿using System.Windows.Input;
+using RecipeBook.Commands;
+using RecipeBook.State.Authentication;
 using RecipeBook.State.Navigation;
 
 namespace RecipeBook.ViewModels
@@ -15,5 +17,11 @@ namespace RecipeBook.ViewModels
             this.Authenticator = authenticator;
             this.Navigator.RedirectTo(ViewType.Login);
         }
+
+        public ICommand LogoutCommand => new InlineCommand(payload =>
+        {
+            this.Authenticator.Logout();
+            this.Navigator.RedirectTo(ViewType.Login);
+        });
     }
 }
