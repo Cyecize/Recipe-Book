@@ -5,6 +5,8 @@ using RecipeBook.Domain.Dtos;
 using RecipeBook.Domain.Models;
 using RecipeBook.Domain.Services;
 using RecipeBook.State.Authentication;
+using RecipeBook.Views;
+using RecipeBook.ViewsModels;
 
 namespace RecipeBook.ViewModels
 {
@@ -13,8 +15,6 @@ namespace RecipeBook.ViewModels
         private readonly IRecipeService _recipeService;
 
         private readonly IAuthenticator _authenticator;
-
-        private List<Recipe> _recipes;
 
         private string _global;
 
@@ -34,7 +34,7 @@ namespace RecipeBook.ViewModels
                 this._global = value;
                 base.OnPropertyChanged(nameof(Global));
             }
-        }  
+        }
 
         public string Owner
         {
@@ -44,17 +44,9 @@ namespace RecipeBook.ViewModels
                 this._owner = value;
                 base.OnPropertyChanged(nameof(Owner));
             }
-        }    
-        
-        public List<Recipe> Recipes
-        {
-            get => this._recipes;
-            set
-            {
-                this._recipes = value;
-                base.OnPropertyChanged(nameof(Recipes));
-            }
         }
+
+        public RecipesGridViewModel RecipesViewModel { get; } = new RecipesGridViewModel();
 
         public ICommand SearchCommand => new InlineCommand(async payload =>
         {
@@ -68,7 +60,7 @@ namespace RecipeBook.ViewModels
 
             List<Recipe> recipes = await this._recipeService.Search(searchQuery);
 
-            this.Recipes = recipes;
+            this.RecipesViewModel.Recipes = recipes;
         });
     }
 }

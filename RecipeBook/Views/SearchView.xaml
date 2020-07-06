@@ -26,6 +26,7 @@
                          Margin="5 10"
                          MaxLength="100"
                          Width="200"
+                         Text="{Binding Global}"
                          materialDesign:HintAssist.Hint="Title, Content, Ingredients"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          HorizontalAlignment="Stretch"
@@ -50,7 +51,7 @@
                 </Button>
             </Grid>
 
-            <controls:RecipesGrid Grid.Row="1" DataContext="{Binding Recipes}"/>
+            <controls:RecipesGrid Grid.Row="1" DataContext="{Binding RecipesViewModel}"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
