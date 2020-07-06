@@ -12,5 +12,7 @@ namespace RecipeBook.Domain.Services
         Task<List<Recipe>> FindByUser(User owner);
 
         Task<List<Recipe>> Search(RecipeSearchQuery query);
+
+        Task<Recipe> FindById(long id);
     }
 }

@@ -7,6 +7,7 @@ using RecipeBook.EntityFramework;
 using RecipeBook.EntityFramework.Services;
 using RecipeBook.State.Authentication;
 using RecipeBook.State.Navigation;
+using RecipeBook.State.ViewBag;
 using RecipeBook.ViewModels;
 
 namespace RecipeBook
@@ -45,8 +46,10 @@ namespace RecipeBook
             services.AddTransient<MyRecipesViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegisterViewModel>();
+            services.AddTransient<RecipeDetailsViewModel>();
 
             services.AddScoped<INavigator, Navigator>();
+            services.AddScoped<IViewBag, ViewBag>();
             services.AddScoped<MainViewModel>();
 
             services.AddScoped<MainWindow>(sp => new MainWindow(sp.GetRequiredService<MainViewModel>()));

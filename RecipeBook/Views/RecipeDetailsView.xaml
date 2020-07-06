@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="RecipeBook.Views.RecipeDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RecipeBook.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="BtnPrint" Click="BtnPrint_OnClick" Grid.Row="0" Grid.Column="1"
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                Margin="10 5"
+                Width="100"
+                HorizontalAlignment="Right"
+                ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+            PRINT
+        </Button>
+
+
+        <StackPanel Width="300" Grid.Row="1" Grid.Column="0">
+            <Border>
+                <GroupBox
+                    Header="Title"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True">
+                    <TextBlock x:Name="TbRecipeTitle" Text="{Binding Recipe.Title}"></TextBlock>
+                </GroupBox>
+            </Border>
+
+            <Border>
+                <GroupBox
+                    Header="Content"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True">
+                    <TextBlock Text="{Binding Recipe.Content}"></TextBlock>
+                </GroupBox>
+            </Border>  
+            
+            <Border>
+                <GroupBox
+                    Header="Created By"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True">
+                    <TextBlock Text="{Binding Recipe.CreatedBy.Username}"></TextBlock>
+                </GroupBox>
+            </Border>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="1" Grid.Column="1">
+            <Border>
+                <GroupBox
+                    Header="Ingredients"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True">
+                    <!-- Responsible for printing ingredients. -->
+                    <Grid Grid.Row="1" Margin="10 3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Margin="4" Grid.Row="0" Grid.Column="0">Name</TextBlock>
+                        <TextBlock Margin="4" Grid.Row="0" Grid.Column="1">Quantity</TextBlock>
+
+                        <ListBox  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Recipe.Ingredients}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <ListBox  Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Recipe.Ingredients}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Quantity}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </GroupBox>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

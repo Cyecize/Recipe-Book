@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RecipeBook.Domain.Models;
 using RecipeBook.Models;
 
-namespace RecipeBook.ViewsModels
+namespace RecipeBook.ViewModels
 {
     public class RecipesGridViewModel : ObservableObject
     {

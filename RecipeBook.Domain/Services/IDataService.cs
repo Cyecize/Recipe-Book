@@ -13,6 +13,8 @@ namespace RecipeBook.Domain.Services
 
         Task<TEntity> FindOneBy(Expression<Func<TEntity, bool>> predicate);
 
+        Task<TEntity> FindOneBy(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, object>>[] includes);
+
         Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate);
 
         Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate, Expression<Func<TEntity, object>>[] includes);

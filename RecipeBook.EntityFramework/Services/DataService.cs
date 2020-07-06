@@ -35,6 +35,17 @@ namespace RecipeBook.EntityFramework.Services
             return await context.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
+        public async Task<TEntity> FindOneBy(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, object>>[] includes)
+        {
+            await using RecipeBookDbContext context = this._factory.CreateDbContext();
+
+            IQueryable<TEntity> query = context.Set<TEntity>();
+
+            query = includes.Aggregate(query, (current, expression) => current.Include(expression));
+
+            return await query.Where(predicate).FirstOrDefaultAsync();
+        }
+
         public async Task<List<TEntity>> FindBy(Func<TEntity, bool> predicate)
         {
             await using RecipeBookDbContext context = this._factory.CreateDbContext();

@@ -81,5 +81,17 @@ namespace RecipeBook.Domain.Services
                 }
             );
         }
+
+        public Task<Recipe> FindById(long id)
+        {
+            return this._dataService.FindOneBy(
+                recipe => recipe.Id == id,
+                new Expression<Func<Recipe, object>>[]
+                {
+                    recipe => recipe.CreatedBy,
+                    recipe => recipe.Ingredients
+                }
+            );
+        }
     }
 }
