@@ -32,14 +32,8 @@ namespace RecipeBook.State.Navigation
         {
             if (!(payload is ViewType viewType)) return;
 
-            this.CurrentViewModel = viewType switch
-            {
-                ViewType.MyRecipes => (this._serviceProvider.GetRequiredService<MyRecipesViewModel>() as BaseViewModel),
-                ViewType.Search => this._serviceProvider.GetRequiredService<SearchViewModel>(),
-                ViewType.AddRecipe => this._serviceProvider.GetRequiredService<AddRecipeViewModel>(),
-                ViewType.Login => this._serviceProvider.GetRequiredService<LoginViewModel>(),
-                _ => throw new ArgumentException($"View {viewType} not supported!")
-            };
+            this.CurrentViewModel = (BaseViewModel)
+                this._serviceProvider.GetRequiredService(viewType.ViewModelType);
         });
 
         public void RedirectTo(ViewType view)

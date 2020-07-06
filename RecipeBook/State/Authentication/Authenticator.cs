@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using RecipeBook.Domain.Models;
 using RecipeBook.Domain.Services;
 using RecipeBook.Models;
+using RecipeBook.State.Navigation;
 
 namespace RecipeBook.State.Authentication
 {
@@ -42,7 +43,7 @@ namespace RecipeBook.State.Authentication
         public string Login(string username, string password)
         {
             string message = string.Empty;
-
+            
             try
             {
                 User user = this._authService.Login(username, password).Result;
