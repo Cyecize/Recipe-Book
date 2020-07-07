@@ -18,29 +18,29 @@ namespace RecipeBook.ViewModels
 
         private readonly IAuthenticator _authenticator;
 
-        private List<IngredientDto> _ingredients;
-
         private List<string> _errorMessages;
+
+        private IngredientsGridViewModel _ingredientsGridViewModel;
 
         public AddRecipeViewModel(INavigator navigator, IRecipeService recipeService, IAuthenticator authenticator)
         {
             this._navigator = navigator;
             this._recipeService = recipeService;
             this._authenticator = authenticator;
-            this.Ingredients = new List<IngredientDto>();
+            this.IngredientsGridViewModel = new IngredientsGridViewModel();
         }
 
         public RecipeDto Recipe { get; } = new RecipeDto();
 
         public IngredientDto Ingredient { get; } = new IngredientDto();
 
-        public List<IngredientDto> Ingredients
+        public IngredientsGridViewModel IngredientsGridViewModel
         {
-            get => this._ingredients;
+            get => this._ingredientsGridViewModel;
             set
             {
-                this._ingredients = value;
-                base.OnPropertyChanged(nameof(Ingredients));
+                this._ingredientsGridViewModel = value;
+                base.OnPropertyChanged(nameof(IngredientsGridViewModel));
             }
         }
 
@@ -57,7 +57,7 @@ namespace RecipeBook.ViewModels
         public ICommand CreateRecipeCommand => new InlineCommand(async payload =>
         {
             List<string> errorMessages = this.Recipe.GetValidationMessages();
-            if (this.Ingredients.Count == 0) errorMessages.Add("Add at least one ingredient!");
+            if (this.IngredientsGridViewModel.Ingredients.Count == 0) errorMessages.Add("Add at least one ingredient!");
 
             this.ErrorMessages = errorMessages;
 
@@ -67,7 +67,7 @@ namespace RecipeBook.ViewModels
                     this._authenticator.CurrentUser,
                     this.Recipe.Title,
                     this.Recipe.Content,
-                    this.Ingredients.ToDictionary(dto => dto.Name, dto => dto.Quantity)
+                    this.IngredientsGridViewModel.Ingredients.ToDictionary(dto => dto.Name, dto => dto.Quantity)
                 );
 
                 this.ResetFieldsCommand.Execute(null);
@@ -83,14 +83,8 @@ namespace RecipeBook.ViewModels
 
             if (errorMessages.Count == 0)
             {
-                this.Ingredients.Add(new IngredientDto()
-                {
-                    Name = this.Ingredient.Name,
-                    Quantity = this.Ingredient.Quantity
-                });
-
-                this.Ingredients = new List<IngredientDto>(this.Ingredients);
-
+                this.IngredientsGridViewModel.AddIngredient(this.Ingredient.Name, this.Ingredient.Quantity);
+                
                 this.Ingredient.Name = string.Empty;
                 this.Ingredient.Quantity = 0D;
             }
@@ -100,7 +94,7 @@ namespace RecipeBook.ViewModels
         {
             this.Recipe.Content = string.Empty;
             this.Recipe.Title = string.Empty;
-            this.Ingredients = new List<IngredientDto>();
+            this.IngredientsGridViewModel.Ingredients = new List<IngredientDto>();
             this.Ingredient.Quantity = 0D;
             this.Ingredient.Name = string.Empty;
             this.ErrorMessages = new List<string>();

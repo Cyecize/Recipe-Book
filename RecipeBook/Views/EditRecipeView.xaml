@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="BtnPrint" Grid.Row="0" Grid.Column="2"
+            <Button Grid.Row="0" Grid.Column="2"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Margin="0 5 10 -7"
                 Width="100"
@@ -68,6 +68,7 @@
                     </GroupBox>
                 </Border>
             </StackPanel>
+
             <StackPanel  Grid.Row="1" Grid.Column="1">
                 <Border>
                     <GroupBox
