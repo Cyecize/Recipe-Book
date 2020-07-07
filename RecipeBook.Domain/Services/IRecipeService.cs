@@ -9,6 +9,8 @@ namespace RecipeBook.Domain.Services
     {
         Task<Recipe> CreateRecipe(User owner, string title, string content, Dictionary<string, double> ingredients);
 
+        Task<Recipe> EditRecipe(Recipe recipe, Dictionary<string, double> ingredients);
+
         Task<List<Recipe>> FindByUser(User owner);
 
         Task<List<Recipe>> Search(RecipeSearchQuery query);

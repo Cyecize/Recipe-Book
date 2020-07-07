@@ -11,6 +11,7 @@ namespace RecipeBook.State.Navigation
         public static readonly ViewType Login = new ViewType(typeof(LoginViewModel));
         public static readonly ViewType Register = new ViewType(typeof(RegisterViewModel));
         public static readonly ViewType RecipeDetails = new ViewType(typeof(RecipeDetailsViewModel));
+        public static readonly ViewType EditRecipe = new ViewType(typeof(EditRecipeViewModel));
 
         public Type ViewModelType { get; }
 

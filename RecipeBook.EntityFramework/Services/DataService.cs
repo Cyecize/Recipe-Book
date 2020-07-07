@@ -87,5 +87,13 @@ namespace RecipeBook.EntityFramework.Services
             await context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> DeleteAll(List<TEntity> entities)
+        {
+            await using RecipeBookDbContext context = this._factory.CreateDbContext();
+            context.Set<TEntity>().RemoveRange(entities);
+            await context.SaveChangesAsync();
+            return true;
+        }
     }
 }

@@ -20,14 +20,27 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="BtnPrint" Click="BtnPrint_OnClick" Grid.Row="0" Grid.Column="1"
-                Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                Margin="10 5"
-                Width="100"
-                HorizontalAlignment="Right"
-                ToolTip="Resource name: MaterialDesignRaisedAccentButton">
-                PRINT
-            </Button>
+            <StackPanel x:Name="StActionsStack"
+                Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Margin="0 5 10 -7"
+                    Width="100"
+                    Command="{Binding EditRecipeCommand}"
+                    IsEnabled="{Binding CanEdit}"
+                    ToolTip="Print current recipe">
+                    EDIT
+                </Button>     
+                <Button x:Name="BtnPrint" Click="BtnPrint_OnClick"
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Margin="0 5 10 -7"
+                        Width="100"
+                        ToolTip="Print current recipe">
+                    PRINT
+                </Button>
+            </StackPanel>
 
             <StackPanel Width="300" Grid.Row="1" Grid.Column="0">
                 <Border>

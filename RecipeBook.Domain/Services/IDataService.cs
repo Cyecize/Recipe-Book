@@ -24,5 +24,7 @@ namespace RecipeBook.Domain.Services
         Task<TEntity> Update(TEntity entity);
 
         Task<bool> Delete(TEntity entity);
+
+        Task<bool> DeleteAll(List<TEntity> entities);
     }
 }

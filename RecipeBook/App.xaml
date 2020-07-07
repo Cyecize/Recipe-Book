@@ -26,6 +26,9 @@
             </DataTemplate>     
             <DataTemplate DataType="{x:Type viewmodels:RecipeDetailsViewModel}">
                 <views:RecipeDetailsView/>
+            </DataTemplate>   
+            <DataTemplate DataType="{x:Type viewmodels:EditRecipeViewModel}">
+                <views:EditRecipeView/>
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>

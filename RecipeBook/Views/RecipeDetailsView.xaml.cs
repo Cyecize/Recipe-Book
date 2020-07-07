@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Xps.Packaging;
 
 namespace RecipeBook.Views
 {
@@ -19,7 +15,7 @@ namespace RecipeBook.Views
 
         private void BtnPrint_OnClick(object sender, RoutedEventArgs e)
         {
-            this.BtnPrint.Visibility = Visibility.Collapsed;
+            this.StActionsStack.Visibility = Visibility.Collapsed;
             try
             {
                 PrintDialog printDialog = new PrintDialog();
@@ -30,7 +26,7 @@ namespace RecipeBook.Views
             }
             finally
             {
-                this.BtnPrint.Visibility = Visibility.Visible;
+                this.StActionsStack.Visibility = Visibility.Visible;
             }
            
         }

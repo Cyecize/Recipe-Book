@@ -12,10 +12,13 @@ namespace RecipeBook.Domain.Services
     {
         private readonly IDataService<Recipe, long> _dataService;
 
+        private readonly IIngredientService _ingredientService;
 
-        public RecipeService(IDataService<Recipe, long> dataService)
+
+        public RecipeService(IDataService<Recipe, long> dataService, IIngredientService ingredientService)
         {
             this._dataService = dataService;
+            this._ingredientService = ingredientService;
         }
 
         public async Task<Recipe> CreateRecipe(User owner, string title, string content, Dictionary<string, double> ingredients)
@@ -36,6 +39,22 @@ namespace RecipeBook.Domain.Services
             }).ToList();
 
             await this._dataService.Create(recipe);
+
+            return recipe;
+        }
+
+        public async Task<Recipe> EditRecipe(Recipe recipe, Dictionary<string, double> ingredients)
+        {
+            await this._ingredientService.Remove(await this._ingredientService.FindByRecipe(recipe));
+
+            recipe.Ingredients = ingredients.Keys.Select(name => new Ingredient()
+            {
+                Name = name,
+                Quantity = ingredients[name],
+                Recipe = recipe
+            }).ToList();
+
+            await this._dataService.Update(recipe);
 
             return recipe;
         }

@@ -33,11 +33,13 @@ namespace RecipeBook
             services.AddSingleton<RecipeBookDbContextFactory>();
             services.AddSingleton<IDataService<User, long>, DataService<User, long>>();
             services.AddSingleton<IDataService<Recipe, long>, DataService<Recipe, long>>();
+            services.AddSingleton<IDataService<Ingredient, long>, DataService<Ingredient, long>>();
 
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IRecipeService, RecipeService>();
             services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<IAuthenticator, Authenticator>();
+            services.AddSingleton<IIngredientService, IngredientService>();
             
 
             //View model factories
@@ -47,6 +49,7 @@ namespace RecipeBook
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegisterViewModel>();
             services.AddTransient<RecipeDetailsViewModel>();
+            services.AddTransient<EditRecipeViewModel>();
 
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<IViewBag, ViewBag>();

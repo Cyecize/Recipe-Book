@@ -5,9 +5,21 @@ namespace RecipeBook.Models
 {
     public class IngredientDto : ObservableObject
     {
+        private long _number;
+
         private string _name;
 
         private double _quantity;
+
+        public long Number
+        {
+            get => this._number;
+            set
+            {
+                this._number = value;
+                base.OnPropertyChanged(nameof(Number));
+            }
+        }
 
         public string Name
         {

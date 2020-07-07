@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="RecipeBook.Controls.IngredientsGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RecipeBook.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <Grid>
+        <DataGrid x:Name="DgIngredientsGrid"
+                  ItemsSource="{Binding Ingredients}"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Header="Name"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="Name">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Quantity"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding
+                            Path="Quantity">
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnRemoveIngredient"
+                                    Click="ButtonBase_OnClick"
+                                    Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                    X
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox x:Name="TbSelectedIngredientNumberToRemove" Text="{Binding SelectedIngredientNumberToRemove, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"></TextBox>
+    </Grid>
+</UserControl>
