@@ -13,6 +13,11 @@ namespace RecipeBook.ViewModels
 
         private long _selectedIngredientNumberToRemove;
 
+        public IngredientsGridViewModel()
+        {
+            this.Ingredients = new List<IngredientDto>();
+        }
+
         public List<IngredientDto> Ingredients
         {
             get => this._ingredients;
